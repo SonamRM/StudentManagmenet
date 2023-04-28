@@ -45,7 +45,7 @@ public class StudentsController {
 
     }
 
-    @PutMapping(path = "/getAllStudents")
+    @GetMapping(path = "/getAllStudents")
     public ResponseEntity<List<Students>> getAllStudents() {
         return ResponseEntity.ok().body(studentsService.getAllStudents());
 

@@ -35,7 +35,7 @@ public class StudentServiceImpl implements StudentsService {
         if (student != null) {
             return new RegistrationResponsePOJO(true, student, null);
         }
-        return new RegistrationResponsePOJO(true, null, "Student not existing with ID: "+id);
+        return new RegistrationResponsePOJO(false, null, "Student not existing with ID: "+id);
 
     }
 

@@ -8,6 +8,8 @@ import students.com.student.model.RegistrationResponsePOJO;
 import students.com.student.model.Students;
 import students.com.student.service.StudentsService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(path = "/api/student")
 @RequiredArgsConstructor
@@ -22,20 +24,30 @@ public class StudentsController {
     }
 
 
-    @GetMapping(path = "/{studentId}")
-    public ResponseEntity<Students> getStudent(@PathVariable int studentId) {
-        return new ResponseEntity<>(HttpStatus.OK);
+    @GetMapping(path = "/getStudentById/{studentId}")
+    public ResponseEntity<RegistrationResponsePOJO> getStudent(@PathVariable int studentId) {
+        RegistrationResponsePOJO registrationResponsePOJO = studentsService.getStudentDetailsById(studentId);
+        return ResponseEntity.ok().body(registrationResponsePOJO);
 
     }
 
-    @DeleteMapping(path = "/{studentsId}")
-    public ResponseEntity<Void> deleteStudent(@PathVariable int studentsId) {
+    @DeleteMapping(path = "/deleteStudentById/{studentsId}")
+    public ResponseEntity<RegistrationResponsePOJO> deleteStudent(@PathVariable int studentsId) {
+        RegistrationResponsePOJO registrationResponsePOJO = studentsService.deleteStudentDetailById(studentsId);
+        return ResponseEntity.ok().body(registrationResponsePOJO);
 
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping(path = "/update")
-    public ResponseEntity<Students> updateStudentDetails(@RequestBody Students students) {
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<RegistrationResponsePOJO> updateStudentDetails(@RequestBody Students students) {
+        RegistrationResponsePOJO registrationResponsePOJO =  studentsService.updatedStudentsDetails(students);
+        return ResponseEntity.ok().body(registrationResponsePOJO);
+
+    }
+
+    @PutMapping(path = "/getAllStudents")
+    public ResponseEntity<List<Students>> getAllStudents() {
+        return ResponseEntity.ok().body(studentsService.getAllStudents());
+
     }
 }

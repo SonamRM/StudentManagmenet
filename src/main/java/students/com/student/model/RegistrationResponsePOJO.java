@@ -10,5 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegistrationResponsePOJO {
+    public boolean responseStatus;
     public Students students;
+    public String statusMessage;
 }
